@@ -1,0 +1,105 @@
+Node.js is a powerful  runtime built on Chrome's V8  engine. It provides a rich library of various core methods for performing essential tasks. Here are some of the core methods and modules frequently used in Node.js:
+
+Core Modules and Methods
+
+1. fs (File System)
+
+fs.readFile: Asynchronously reads the entire contents of a file.
+
+        const fs = require('fs');
+        fs.readFile('path/to/file', 'utf8', (err, data) => {
+        if (err) throw err;
+        console.log(data);
+        });
+
+fs.writeFile: Asynchronously writes data to a file, replacing the file if it already exists.
+
+fs.writeFile('path/to/file', 'Hello World', (err) => {
+  if (err) throw err;
+  console.log('File has been saved!');
+});
+
+fs.appendFile: Asynchronously appends data to a file, creating the file if it does not exist.
+
+fs.appendFile('path/to/file', 'data to append', (err) => {
+  if (err) throw err;
+  console.log('Data was appended to file!');
+});
+
+2. HTTP
+
+http.createServer: Creates an HTTP server instance.
+
+const http = require('http');
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Hello World\n');
+});
+
+server.listen(3000, '127.0.0.1', () => {
+  console.log('Server running at http://127.0.0.1:3000/');
+});
+
+3. Path
+
+path.join: Joins all given path segments together using the platform-specific separator as a delimiter, then normalizes the resulting path.
+
+const path = require('path');
+const joinedPath = path.join('/foo', 'bar', 'baz/asdf', 'quux', '..');
+console.log(joinedPath);
+
+
+4. URL
+
+url.parse: Parses a URL string into an object.
+
+const url = require('url');
+const parsedUrl = url.parse('http://www.example.com/path?name=JohnDoe#hash');
+console.log(parsedUrl);
+
+url.format: Returns a formatted URL string derived from an object.
+
+const urlObject = {
+  protocol: 'http',
+  hostname: 'www.example.com',
+  pathname: '/path',
+  query: {
+    name: 'JohnDoe'
+  }
+};
+const formattedUrl = url.format(urlObject);
+console.log(formattedUrl);
+
+5. Events
+
+EventEmitter: Allows for the creation of event-driven programs.
+
+const EventEmitter = require('events');
+const myEmitter = new EventEmitter();
+
+myEmitter.on('event', () => {
+  console.log('An event occurred!');
+});
+
+myEmitter.emit('event');
+
+6. Os
+
+os.cpus: Returns an array of objects containing information about each CPU/core installed.
+
+const os = require('os');
+console.log(os.cpus());
+os.freemem: Returns the amount of free system memory in bytes.
+
+console.log(os.freemem());
+
+
+7. Process
+
+process.env: Returns an object containing the user environment.
+
+console.log(process.env);
+process.exit: Ends the process with the specified code.
+
+process.exit(0);
