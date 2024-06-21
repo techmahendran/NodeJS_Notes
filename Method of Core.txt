@@ -1,0 +1,98 @@
+fs (File System)
+The fs module allows you to interact with the file system in a way modeled on standard POSIX functions.
+
+Example methods:
+
+fs.readFile(path, callback): Reads the entire contents of a file.
+fs.writeFile(path, data, callback): Writes data to a file, replacing the file if it already exists.
+fs.appendFile(path, data, callback): Appends data to a file, creating the file if it does not exist.
+fs.unlink(path, callback): Deletes a file.
+
+const fs = require('fs');
+
+// Read file
+fs.readFile('example.txt', 'utf8', (err, data) => {
+  if (err) {
+    console.error(err);
+    return;
+  }
+  console.log(data);
+});
+
+// Write file
+fs.writeFile('example.txt', 'Hello, world!', err => {
+  if (err) {
+    console.error(err);
+  }
+});
+
+http (HTTP)
+The http module can create HTTP servers and make HTTP requests.
+
+
+http.createServer(callback): Creates an HTTP server.
+http.request(options, callback): Makes an HTTP request.
+
+const http = require('http');
+
+// Create HTTP server
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Hello World\n');
+});
+
+server.listen(3000, '127.0.0.1', () => {
+  console.log('Server running at http://127.0.0.1:3000/');
+});
+
+path (Path)
+The path module provides utilities for working with file and directory paths.
+
+Example methods:
+
+path.join([...paths]): Joins all given path segments together.
+path.resolve([...paths]): Resolves a sequence of paths into an absolute path.
+
+const path = require('path');
+
+const joinedPath = path.join('/foo', 'bar', 'baz/asdf', 'quux', '..');
+console.log(joinedPath); // '/foo/bar/baz/asdf'
+
+const resolvedPath = path.resolve('foo/bar', '/tmp/file/', '..', 'a/../subfile');
+console.log(resolvedPath); // '/tmp/subfile'
+
+os (Operating System)
+The os module provides operating system-related utility methods and properties.
+
+Example methods:
+
+os.platform(): Returns the operating system platform.
+os.cpus(): Returns an array of objects containing information about each logical CPU core.
+
+const os = require('os');
+
+console.log('OS Platform:', os.platform()); 
+console.log('CPU Architecture:', os.arch()); 
+console.log('Number of CPUs:', os.cpus().length); 
+
+events (Events)
+The events module provides the EventEmitter class, which is key to many Node.js applications.
+
+Example methods:
+
+emitter.on(event, listener): Adds a listener for the specified event.
+emitter.emit(event, [...args]): Emits an event.
+
+const EventEmitter = require('events');
+
+class MyEmitter extends EventEmitter {}
+
+const myEmitter = new MyEmitter();
+myEmitter.on('event', () => {
+  console.log('An event occurred!');
+});
+myEmitter.emit('event'); // 'An event occurred!'
+
+
+
